@@ -1,0 +1,9 @@
+>> vector = xlsread('gasVector');
+>> vectoravg = mean(reshape(vector,12,[]))';
+>> years = 1987:2016;
+>> years = years';
+>> gasavg = [years vectoravg];
+>> >> xlswrite('monthly_average_price',gasavg);
+Warning: Could not start Excel server for export.
+XLSWRITE will attempt to write file in CSV format. 
+> In xlswrite (line 181) 
