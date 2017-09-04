@@ -36,7 +36,6 @@ x = annual_profile(df_data)
 
 #year on year differences
 [months,years] = np.shape(x)
-###????
 
 #output 
 differences = np.zeros((months,years-1))
@@ -93,13 +92,13 @@ sim_years = 10
 bootstrap_sample = np.zeros((12*sim_years,1))
 for i in range(0,sim_years):
     for j in range(0,12):
-        s = int(np.ceil(sim_years*np.random.uniform()))
-        bootstrap_sample[i*12+j] = x[j,s]
+        s = int(np.ceil(years*np.random.uniform()))
+        bootstrap_sample[i*12+j] = x[j,s-1]
 
 plt.figure()
 #bootstrap sample
 plt.plot(bootstrap_sample)
-plt.xlabel('Year',fontsize=30)
+plt.xlabel('Months',fontsize=30)
 plt.ylabel('Demand (MWh)',fontsize=30)
 
 plt.figure()
@@ -107,5 +106,25 @@ plt.figure()
 autocorrelation_plot(x,c=np.random.rand(3,1))
 plt.xlabel('Months',fontsize=30)
 plt.ylabel('Autocorrelation',fontsize=30)
+
+
+#monte carlo
+sim_years = 10
+bootstrap_sample = np.zeros((12*sim_years,1))
+for i in range(0,sim_years):
+    for j in range(0,12):
+        s = int(np.ceil(years*np.random.normal()))
+        bootstrap_sample[i*12+j] = x[j,s-1]
+
+plt.figure()
+#bootstrap sample
+plt.plot(bootstrap_sample)
+plt.xlabel('Months',fontsize=30)
+plt.ylabel('Demand (MWh)',fontsize=30)
+
+    
+
+
+
 
 
