@@ -88,8 +88,8 @@ plt.plot(difference[0:363])
 
 #moving avg smoothing
 
-movingAvg = np.zeros((335))
-peakMask = peak_hours[14:350]
+movingAvg = np.zeros((335,1))
+peakMask = peak_hours[15:350]
 
 for i in range(15,350):
     movingAvg[i-15] = np.mean(peak_hours[i-15:i+15])
@@ -108,7 +108,7 @@ plt.show()
 
 
 #remove smoothed trend from the original time series 
-residual_timeSeries = np.subtract(peak_hours, movingAvg) ##replace smoothed_trend w/ number 6 vector name
+residual_timeSeries = np.subtract(peakMask, movingAvg) ##replace smoothed_trend w/ number 6 vector name
 residuals_vec = mat2vec(residual_timeSeries)
 
 #^^^^I think we can just subtract "movingAvg" from "peakMask" since they're the same dim
